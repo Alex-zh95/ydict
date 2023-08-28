@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 
 
-def console_color_fmt(input_str: str, color_str: str = 'white') -> str:
+def console_color_fmt(input_str: str, color_str: str = 'off') -> str:
     '''
     Produces a temporary string formatter display strings in the console with selected color.
 
@@ -13,7 +13,7 @@ def console_color_fmt(input_str: str, color_str: str = 'white') -> str:
     ----------
     input_str:
         String to format
-    color_str: str = 'white'
+    color_str: str = 'off'
         Definition of colors. Available colors include:
 
         - black
@@ -24,6 +24,8 @@ def console_color_fmt(input_str: str, color_str: str = 'white') -> str:
         - magenta
         - cyan
         - white
+		
+		Set to 'off' (default) to turn off formatting.
 
     Returns
     -------
@@ -74,6 +76,22 @@ def yd_lookup(input_str: str) -> requests.Response:
 def parse_html_from_response(request_response: requests.Response) -> dict:
     '''
     Parse the returned response handle's HTML to obtain components such as definition, phonetics and examples.
+	
+	Parameters
+	----------
+	requests_response: requests.Response
+		Requests object after parsing URL
+	
+	Returns
+	-------
+	extract: dict
+		Parse results including:
+		
+		1. title: the word being searched
+		2. phonetic: phonetics of the word
+		3. dict_book: List of all the definitions given
+	
+		titles of the dictionary reflect the HTML tags for youdao.
     '''
     page = request_response
     soup = BeautifulSoup(page.content, 'html.parser')
