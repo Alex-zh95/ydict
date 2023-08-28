@@ -24,8 +24,8 @@ def console_color_fmt(input_str: str, color_str: str = 'off') -> str:
         - magenta
         - cyan
         - white
-		
-		Set to 'off' (default) to turn off formatting.
+
+        Set to 'off' (default) to turn off formatting.
 
     Returns
     -------
@@ -76,22 +76,22 @@ def yd_lookup(input_str: str) -> requests.Response:
 def parse_html_from_response(request_response: requests.Response) -> dict:
     '''
     Parse the returned response handle's HTML to obtain components such as definition, phonetics and examples.
-	
-	Parameters
-	----------
-	requests_response: requests.Response
-		Requests object after parsing URL
-	
-	Returns
-	-------
-	extract: dict
-		Parse results including:
-		
-		1. title: the word being searched
-		2. phonetic: phonetics of the word
-		3. dict_book: List of all the definitions given
-	
-		titles of the dictionary reflect the HTML tags for youdao.
+
+    Parameters
+    ----------
+    requests_response: requests.Response
+        Requests object after parsing URL
+    
+    Returns
+    -------
+    extract: dict
+        Parse results including:
+
+        1. title: the word being searched
+        2. phonetic: phonetics of the word
+        3. dict_book: List of all the definitions given
+
+    titles of the dictionary reflect the HTML tags for youdao.
     '''
     page = request_response
     soup = BeautifulSoup(page.content, 'html.parser')
