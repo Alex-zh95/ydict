@@ -113,16 +113,23 @@ def parse_html_from_response(request_response: requests.Response) -> dict:
     except AttributeError:  # Some items do not return a phonetic text, so leave this blank
         defn_items['phonetic'] = ''
 
-    # Dictionary definitions
+    # Dictionary definitions, dependent on language
+    defn_htmls_en = result_dump.find_all('li', class_='word-exp')
     defn_htmls = result_dump.find_all('div', class_='word-exp')
+
     defns = []
     for i in range(len(defn_htmls)):
         defn_html = defn_htmls[i]
 
         if i == 0:
-            defns.append(f'Definition:\t{defn_html.text}')
-        else:
-            defns.append(f'\t{defn_html.text}')
+            if len(defn_htmls_en) == 0:
+                defns.append(f'Definition:\t{defn_html.text}')
+            else:
+                defns.append(f'Definition:\t{defn_htmls_en[0].text}')
+                defns.append(f'\t{defn_html.text}')
+            continue
+
+        defns.append(f'\t{defn_html.text}')
 
     defn_items['dict_book'] = defns
 
