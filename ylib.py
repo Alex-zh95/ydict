@@ -89,8 +89,11 @@ def parse_html_from_response(request_response: requests.Response) -> dict:
     defn_items['title'] = title_txt[:title_end]
 
     # Phonetics: The phonetics for the word looked up
-    phonetic_text = result_dump.find('span', class_='phonetic').text
-    defn_items['phonetic'] = phonetic_text.replace('/', '')
+    try:
+        phonetic_text = result_dump.find('span', class_='phonetic').text
+        defn_items['phonetic'] = phonetic_text.replace('/', '')
+    except AttributeError:  # Some items do not return a phonetic text, so leave this blank
+        defn_items['phonetic'] = ''
 
     # Dictionary definitions
     defn_htmls = result_dump.find_all('div', class_='word-exp')
