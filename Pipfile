@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 requests = "*"
 beautifulsoup4 = "*"
-regex = "*"
 
 [dev-packages]
 
