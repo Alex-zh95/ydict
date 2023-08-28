@@ -1,3 +1,4 @@
+#!/bin/python
 '''
 Python script will look up definitions of pasted words into youdao.com and return definition listing.
 '''
@@ -21,12 +22,14 @@ def view(defn_dict: dict) -> None:
 def main() -> None:
     lookup_str = input('ydict: ')
 
-    # Get the definitions
-    yd_html = ylib.yd_lookup(input_str=lookup_str)
-    yd_defn = ylib.parse_html_from_response(yd_html)
+    while lookup_str.lower() != 'q':
+        # Get the definitions
+        yd_html = ylib.yd_lookup(input_str=lookup_str)
+        yd_defn = ylib.parse_html_from_response(yd_html)
 
-    # Start printing the outputs
-    view(yd_defn)
+        # Start printing the outputs
+        view(yd_defn)
+        lookup_str = input('ydict: ')
 
 
 if __name__ == "__main__":
