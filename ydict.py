@@ -20,16 +20,22 @@ def view(defn_dict: dict) -> None:
 
 
 def main() -> None:
-    lookup_str = input('ydict: ')
+    while True:
+        lookup_str = input('ydict: ')
 
-    while lookup_str.lower() != 'q':
+        if lookup_str.lower() == 'q':
+            break
+
         # Get the definitions
-        yd_html = ylib.yd_lookup(input_str=lookup_str)
+        try:
+            yd_html = ylib.yd_lookup(input_str=lookup_str)
+        except AssertionError:
+            continue
+
         yd_defn = ylib.parse_html_from_response(yd_html)
 
         # Start printing the outputs
         view(yd_defn)
-        lookup_str = input('ydict: ')
 
 
 if __name__ == "__main__":

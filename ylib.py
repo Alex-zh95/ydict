@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import re
 
 
 def console_color_fmt(input_str: str, color_str: str = 'off') -> str:
@@ -65,6 +64,9 @@ def yd_lookup(input_str: str) -> requests.Response:
     page
         Return the requests.Response object handle to the provided URL
     '''
+    if input_str == '':
+        raise AssertionError('Input cannot be blank.')
+
     # Generate the URL to obtain the definition
     url = f'https://youdao.com/result?word={input_str}&lang=en'
 
@@ -81,7 +83,7 @@ def parse_html_from_response(request_response: requests.Response) -> dict:
     ----------
     requests_response: requests.Response
         Requests object after parsing URL
-    
+
     Returns
     -------
     extract: dict
