@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 requests = "*"
 beautifulsoup4 = "*"
+ipython = "==8.14.0"
 
 [dev-packages]
 
