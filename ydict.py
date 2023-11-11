@@ -3,7 +3,7 @@
 Python script will look up definitions of pasted words into youdao.com and return definition listing.
 '''
 
-import ylib
+from ydict_lib import ylib
 
 
 def view(defn_dict: dict) -> None:
