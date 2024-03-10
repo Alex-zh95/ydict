@@ -8,7 +8,7 @@ from ydict_lib import ylib
 
 def view(defn_dict: dict) -> None:
     '''Display colorized definitions page.'''
-    title_txt = ylib.console_color_fmt(input_str=defn_dict['title'], color_str='red')
+    title_txt = ylib.console_color_fmt(input_str=defn_dict['title'], color_str='magenta')
     print(title_txt)
 
     phonetic_txt = ylib.console_color_fmt(input_str=f"({defn_dict['phonetic']})", color_str='yellow')
@@ -29,10 +29,12 @@ def main() -> None:
         # Get the definitions
         try:
             yd_html = ylib.yd_lookup(input_str=lookup_str)
+            yd_defn = ylib.parse_html_from_response(yd_html)
         except AssertionError:
             continue
-
-        yd_defn = ylib.parse_html_from_response(yd_html)
+        except AttributeError:
+            print(ylib.console_color_fmt('Error: No matches found/错误：没有找到相关匹配', color_str='red'))
+            continue
 
         # Start printing the outputs
         view(yd_defn)
