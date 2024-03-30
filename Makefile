@@ -1,9 +1,10 @@
 PREFIX ?= /usr/local
 
-install: ydict.py ydict_lib
-	cp -r ydict_lib $(PREFIX)/bin/ydict_lib
-	install -Dm755 ydict.py $(PREFIX)/bin/ydict
+install:
+	mkdir -p $(PREFIX)/bin/ydict_lib
+	cp -r src/ydict/ydict_lib/ylib.py $(PREFIX)/bin/ydict_lib/ylib.py
+	install -Dm755 src/ydict/ydict.py $(PREFIX)/bin/ydict.py
 
 clean:
-	rm $(PREFIX)/bin/ydict
+	rm -rf $(PREFIX)/bin/ydict
 	rm -rf $(PREFIX)/bin/ydict_lib

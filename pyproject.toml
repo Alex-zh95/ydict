@@ -1,0 +1,17 @@
+[project]
+name = "ydict"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "chu", email = "zh.c.l.z.95@gmail.com"},
+]
+dependencies = [
+    "beautifulsoup4"
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
