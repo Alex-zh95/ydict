@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:f5c64b7509e390a5823d78aa62357ef9fb2a8fd03bdb7a7df8e94a3365f7af30"
+content_hash = "sha256:4e5602c531714646e56180d078e1258b5d4e6a1f6da1f5fad8eca77d8b704377"
 
 [[package]]
 name = "beautifulsoup4"
